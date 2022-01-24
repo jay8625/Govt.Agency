@@ -17,9 +17,17 @@ a {
     margin-bottom:0px;
 }
 
+.pos{
+    margin-top:1rem;
+}
+
 .margn {
     margin-left: 0px;
     padding-left: 0px;
+}
+
+.rad{
+    border-radius:1rem;
 }
 
 .list {
@@ -77,6 +85,10 @@ html {
   html {
     font-size: 16px;
   }
+}
+
+.space{
+    width:10rem;
 }
 
 .border-top {

@@ -1,16 +1,16 @@
-﻿@model Govt.Agency.DAL.Model.City
+﻿@model Govt.Agency.DAL.Model.State
 
 @{
-    ViewData["Title"] = "CityCreate";
+    ViewData["Title"] = "StateCreate";
 }
 
-<h1>CityCreate</h1>
+<h1>StateCreate</h1>
 
-<h4>City</h4>
+<h4>State</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CityCreate">
+        <form asp-action="StateCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -18,8 +18,8 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StateId" class="control-label"></label>
-                <select asp-for="StateId" class ="form-control" asp-items="ViewBag.StateId"></select>
+                <label asp-for="CountryId" class="control-label"></label>
+                <select asp-for="CountryId" class ="form-control" asp-items="ViewBag.Countries"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

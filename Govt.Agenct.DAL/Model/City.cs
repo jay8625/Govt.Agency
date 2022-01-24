@@ -8,7 +8,7 @@ namespace Govt.Agency.DAL.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int StateId { get; set; }
+        public int? StateId { get; set; }
         [ForeignKey(nameof(StateId))]
         public virtual State State { get; set; }
     }

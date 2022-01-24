@@ -1,5 +1,4 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <h3>Admin Options</h3>
@@ -11,7 +10,17 @@
         <a class="space btn btn-outline-info text-white" asp-controller="AgencyInfo" asp-action="Create">Register Agency</a>
     </li>
     <li>
-        <a class="space btn btn-outline-info text-white" asp-controller="Country" asp-action="Index">Admin MasterData</a>
+        <div class="btn-group dropright">
+            <button type="button" class="space btn btn btn-outline-info dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Master Data
+            </button>
+            <div class="dropdown-menu rad bg-info">
+                <a  class="space btn btn-dark text-white" asp-controller="AgencyInfo" asp-action="CountryCreate">Insert New Country</a>
+                <a  class="space btn btn-dark text-white" asp-controller="AgencyInfo" asp-action="StateCreate">Insert New State</a>
+                <a  class="space btn btn-dark text-white" asp-controller="AgencyInfo" asp-action="CityCreate">Insert New City</a>
+                <a class="space btn btn-dark text-white" asp-controller="AgencyType" asp-action="Create">Insert Agency Types</a>
+            </div>
+        </div>
     </li>
 </ul>
 

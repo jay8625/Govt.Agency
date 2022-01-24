@@ -12,4 +12,5 @@ public class Govt_AgencyContext : DbContext
     public DbSet<Country> Countries { get; set; }
     public DbSet<State> States { get; set; }
     public DbSet<City> Citys { get; set; }
+    public DbSet<AgencyType> AgencyTypes { get; set; }
 }

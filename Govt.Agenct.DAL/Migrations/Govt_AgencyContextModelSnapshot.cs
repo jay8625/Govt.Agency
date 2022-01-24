@@ -61,9 +61,6 @@ namespace Govt.Agency.DAL.Migrations
                     b.Property<string>("GovtImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JurisdictionalBoundaries")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -88,6 +85,90 @@ namespace Govt.Agency.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AgencyInfo");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.AgencyType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AgencyTypes");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Citys");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("States");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.City", b =>
+                {
+                    b.HasOne("Govt.Agency.DAL.Model.State", "State")
+                        .WithMany("Citys")
+                        .HasForeignKey("StateId");
+                });
+
+            modelBuilder.Entity("Govt.Agency.DAL.Model.State", b =>
+                {
+                    b.HasOne("Govt.Agency.DAL.Model.Country", "Country")
+                        .WithMany("State")
+                        .HasForeignKey("CountryId");
                 });
 #pragma warning restore 612, 618
         }

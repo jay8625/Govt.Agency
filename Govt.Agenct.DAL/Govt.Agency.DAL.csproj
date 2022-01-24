@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220123183715_GovtAgency.cs" />
     <Compile Remove="Migrations\20220123183715_GovtAgency.Designer.cs" />
+    <Compile Remove="Migrations\20220124064450_GovtAgency.cs" />
+    <Compile Remove="Migrations\20220124064450_GovtAgency.Designer.cs" />
+    <Compile Remove="Migrations\20220124100133_GovtAgency.cs" />
+    <Compile Remove="Migrations\20220124100133_GovtAgency.Designer.cs" />
+    <Compile Remove="Migrations\20220124110815_GovtAgency.cs" />
+    <Compile Remove="Migrations\20220124110815_GovtAgency.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

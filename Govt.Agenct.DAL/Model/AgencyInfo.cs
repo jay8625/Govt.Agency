@@ -18,7 +18,6 @@ namespace Govt.Agenct.DAL.Model
         public string PhoneNumber { get; set; }
         public string GovtImage { get; set; }
         public string Type { get; set; }
-        public string JurisdictionalBoundaries { get; set; }
         public string Description { get; set; }
         public bool Broucher { get; set; }
         public bool AidOrganization { get; set; }
