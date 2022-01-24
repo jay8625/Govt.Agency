@@ -23,7 +23,6 @@ namespace Govt.Agenct.DAL.Model
         public bool AidOrganization { get; set; }
         public bool BroucherCopy { get; set; }
         public string Comments { get; set; }
-        public string Notify { get; set; }
         public string DocumentAttachment { get; set; }
         public DateTime DateTime { get; set; }
     }

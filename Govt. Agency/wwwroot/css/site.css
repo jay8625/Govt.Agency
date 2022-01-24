@@ -17,6 +17,14 @@ a {
     margin-bottom:0px;
 }
 
+#type{
+    top:2.5rem;
+}
+
+#mid{
+    left:3rem;
+}
+
 .pos{
     margin-top:1rem;
 }

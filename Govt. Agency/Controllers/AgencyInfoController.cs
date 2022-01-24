@@ -157,9 +157,9 @@ namespace Govt._Agency.Controllers
             return View();
         }
 
-        public JsonResult LoadStates(int Id)
+        public JsonResult LoadStates(int countryId)
         {
-            var States = _context.States.Where(x => x.CountryId == Id).ToList();
+            var States = _context.States.Where(x => x.CountryId == countryId).ToList();
             return Json(new SelectList(States, "Id", "Name"));
         }
 

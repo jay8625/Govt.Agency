@@ -4,11 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
 
 <form asp-action="Create">
     <div class="row">
-            <h4>PropertyInfo</h4>
-            <hr />
+        <h4>PropertyInfo</h4>
+        <hr />
         <div class="col-md-12 row borders">
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -67,10 +68,15 @@
         <hr />
         <div class="col-md-12 row borders">
             <div class="row col-md-8">
-                <div class="form-group">
-                    <select class="col pos" asp-items="@ViewBag.AgencyTypes">
+                <div class="form-group col-md-6">
+                    <select id="type" class="col" asp-items="@ViewBag.AgencyTypes">
                         <option>Select Type</option>
                     </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-12">
                     <label asp-for="Description" class="control-label"></label>
@@ -95,19 +101,9 @@
             </div>
             <div class="col-md-4 col-md-offset-8">
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="Comments" class="control-label"></label>
                     <input asp-for="Comments" class="form-control" />
                     <span asp-validation-for="Comments" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Notify" class="control-label"></label>
-                    <input asp-for="Notify" class="form-control" />
-                    <span asp-validation-for="Notify" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="DocumentAttachment" class="control-label"></label>
@@ -115,8 +111,8 @@
                     <span asp-validation-for="DocumentAttachment" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <a asp-action="Index">Back to List</a>
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a class="btn btn-info col-md-5" asp-controller="Home" asp-action="Index">Cancel</a>
+                    <input id="mid" type="submit" value="Create" class="col-md-5 col-md-offset-6 btn btn-info" />
                 </div>
             </div>
         </div>
@@ -128,27 +124,33 @@
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }
 }
-<script>
-    $(document).ready(function(){
-        $('#CountryList').change(function(){
-            $('#StateList').empty();
-            $('#CityList').empty();
-            $.ajax({
-            type:'Get',
-            url:'@Url.Action("LoadStates")',
-            dataType: 'Json',
-            data:{id:$('#CountryList').val()},
-            success: function (states) {
-                $('#StateList').append('<option value="'+ -1 +'">' +
-                "Select State" + '</option>');
-                $.each(states,function(i,state){
-                    $("#StateList").append('<option value="' + state.value +'">' +
-                    state.text + '</option>');                
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CountryList").change(function () {
+            var countryId = $(this).val();
+            $.getJSON("../AgencyInfo/LoadStates", { countryId: countryId },
+                function (classesData) {
+                    var select = $("#StateList");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "Select a State"
+                    }));
+                    $.each(classesData, function (index, itemData) {
+                        console.log(itemData);
+                        select.append($('<option/>', {
+                            value: itemData.value,
+                            text: itemData.text
+                        }));
+                    });
                 });
-            },
-            error: function(ex)
-            });
-        return false;
-        })
+        });
     });
-</script>
+</script> 
+
+
+
+
+
+
