@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Govt.Agency.Services.Repositories;
 
 namespace Govt._Agency
 {
@@ -23,6 +24,7 @@ namespace Govt._Agency
 
             services.AddDbContext<Govt_AgencyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Govt_AgencyContext")));
+            services.AddScoped<IAngencyInfo, AgencyInfoRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +48,7 @@ namespace Govt._Agency
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=AgencyInfoController}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

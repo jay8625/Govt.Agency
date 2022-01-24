@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Govt.Agenct.DAL.Model
 {
@@ -25,5 +26,6 @@ namespace Govt.Agenct.DAL.Model
         public string Comments { get; set; }
         public string Notify { get; set; }
         public string DocumentAttachment { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

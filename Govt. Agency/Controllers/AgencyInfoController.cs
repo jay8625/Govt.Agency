@@ -1,36 +1,41 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Govt.Agenct.DAL.Model;
+using Govt.Agency.Services.Repositories;
 
 namespace Govt._Agency.Controllers
 {
     public class AgencyInfoController : Controller
     {
-        private readonly Govt_AgencyContext _context;
+        private readonly IAngencyInfo _angencyInfoRepo;
 
-        public AgencyInfoController(Govt_AgencyContext context)
+        public AgencyInfoController(IAngencyInfo angencyInfoRepo)
         {
-            _context = context;
+            _angencyInfoRepo = angencyInfoRepo;
         }
 
+
         // GET: AgencyInfo
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.AgencyInfo.ToListAsync());
+            return View(_angencyInfoRepo.GetAllViews());
+        }
+
+        [HttpGet]
+        public PartialViewResult SideNav()
+        {
+            return PartialView();
         }
 
         // GET: AgencyInfo/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var agencyInfo = await _context.AgencyInfo
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var agencyInfo = _angencyInfoRepo.GetById(id);
             if (agencyInfo == null)
             {
                 return NotFound();
@@ -50,26 +55,25 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
+        public IActionResult Create([Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(agencyInfo);
-                await _context.SaveChangesAsync();
+                _angencyInfoRepo.Add(agencyInfo);
                 return RedirectToAction(nameof(Index));
             }
             return View(agencyInfo);
         }
 
         // GET: AgencyInfo/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var agencyInfo = await _context.AgencyInfo.FindAsync(id);
+            var agencyInfo = _angencyInfoRepo.GetById(id);
             if (agencyInfo == null)
             {
                 return NotFound();
@@ -82,7 +86,7 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
+        public IActionResult Edit(int id, [Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
         {
             if (id != agencyInfo.Id)
             {
@@ -93,8 +97,7 @@ namespace Govt._Agency.Controllers
             {
                 try
                 {
-                    _context.Update(agencyInfo);
-                    await _context.SaveChangesAsync();
+                    _angencyInfoRepo.Update(agencyInfo);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -113,15 +116,14 @@ namespace Govt._Agency.Controllers
         }
 
         // GET: AgencyInfo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var agencyInfo = await _context.AgencyInfo
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var agencyInfo = _angencyInfoRepo.GetById(id);
             if (agencyInfo == null)
             {
                 return NotFound();
@@ -133,17 +135,15 @@ namespace Govt._Agency.Controllers
         // POST: AgencyInfo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var agencyInfo = await _context.AgencyInfo.FindAsync(id);
-            _context.AgencyInfo.Remove(agencyInfo);
-            await _context.SaveChangesAsync();
+            _angencyInfoRepo.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool AgencyInfoExists(int id)
         {
-            return _context.AgencyInfo.Any(e => e.Id == id);
+            return _angencyInfoRepo.any(id);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Govt.Agency.DAL.Migrations
 {
@@ -30,7 +31,8 @@ namespace Govt.Agency.DAL.Migrations
                     BroucherCopy = table.Column<bool>(nullable: false),
                     Comments = table.Column<string>(nullable: true),
                     Notify = table.Column<string>(nullable: true),
-                    DocumentAttachment = table.Column<string>(nullable: true)
+                    DocumentAttachment = table.Column<string>(nullable: true),
+                    DateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
