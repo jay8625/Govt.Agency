@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Govt.Agency.DAL.Model;
 using Govt.Agency.Services.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
         private readonly ICountry _countryRepo;

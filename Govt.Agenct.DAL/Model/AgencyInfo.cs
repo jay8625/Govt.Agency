@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Govt.Agenct.DAL.Model
+namespace Govt.Agency.DAL.Model
 {
     public class AgencyInfo
     {

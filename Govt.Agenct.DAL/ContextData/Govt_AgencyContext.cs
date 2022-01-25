@@ -9,7 +9,7 @@ public class Govt_AgencyContext : IdentityDbContext
     {
     }
 
-    public DbSet<Govt.Agenct.DAL.Model.AgencyInfo> AgencyInfo { get; set; }
+    public DbSet<AgencyInfo> AgencyInfo { get; set; }
     public DbSet<Country> Countries { get; set; }
     public DbSet<State> States { get; set; }
     public DbSet<City> Citys { get; set; }

@@ -4,11 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="text-md-center">Insert State</h1>
 
-<hr />
-<div class="row">
+<div class="row countrystatemrgn">
     <div class="col-md-4 offset-4 rad text-white bg-danger bg-dark">
+        <h1 class="text-md-center">Insert State</h1>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -24,7 +23,7 @@
                 <input type="submit" value="Create" class="allmargin col btn btn-info" />
             </div>
         </form>
-        <a class="height col btn btn-info" asp-action="Index">Back to List</a>
+        <a class="height col btn btn-info" asp-action="Index">Show Added States</a>
     </div>
 </div>
 

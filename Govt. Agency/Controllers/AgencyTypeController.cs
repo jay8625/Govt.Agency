@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Govt.Agency.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AgencyTypeController : Controller
     {
         private readonly Govt_AgencyContext _context;

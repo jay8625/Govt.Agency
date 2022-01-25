@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Govt.Agency.DAL.Migrations
 {
     [DbContext(typeof(Govt_AgencyContext))]
-    [Migration("20220125145349_Common")]
+    [Migration("20220125162841_Common")]
     partial class Common
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace Govt.Agency.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Govt.Agenct.DAL.Model.AgencyInfo", b =>
+            modelBuilder.Entity("Govt.Agency.DAL.Model.AgencyInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

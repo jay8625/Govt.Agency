@@ -1,4 +1,4 @@
-﻿using Govt.Agenct.DAL.Model;
+﻿using Govt.Agency.DAL.Model;
 using System.Collections.Generic;
 using System.Linq;
 

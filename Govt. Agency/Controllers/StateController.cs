@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Govt.Agency.DAL.Model;
 using Govt.Agency.Services.Repositories;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StateController : Controller
     {
         private readonly IState _stateRepo;
@@ -54,7 +56,7 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CountryId")] State state)
+        public IActionResult Create([Bind("Id,Name,CountryId")] State state)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +89,7 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CountryId")] State state)
+        public IActionResult Edit(int id, [Bind("Id,Name,CountryId")] State state)
         {
             if (id != state.Id)
             {
@@ -143,6 +145,7 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public JsonResult LoadStates(int countryId)
         {
             var stateList = _stateRepo.GetAll();

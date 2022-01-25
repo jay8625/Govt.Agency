@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Govt.Agency.DAL.Model;
 using Govt.Agency.Services.Repositories;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         private readonly ICity _cityRepo;
@@ -145,6 +147,7 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public JsonResult LoadCities(int stateId)
         {
             var cityList=_cityRepo.GetAll();

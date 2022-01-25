@@ -1,10 +1,14 @@
-﻿using Govt._Agency.Areas.Identity.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Govt._Agency.Data
 {
-    public class Govt_AgencyContext : IdentityDbContext<Govt_AgencyUser>
+    public class Govt_AgencyContext : IdentityDbContext<IdentityUser>
     {
         public Govt_AgencyContext(DbContextOptions<Govt_AgencyContext> options)
             : base(options)

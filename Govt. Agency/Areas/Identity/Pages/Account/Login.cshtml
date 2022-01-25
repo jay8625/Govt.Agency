@@ -5,9 +5,9 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-4 bg-info rad text-white">
+<h1 class="text-md-center">@ViewData["Title"]</h1>
         <section>
             <form id="account" method="post">
                 <h4>Use a local account to log in.</h4>
@@ -32,21 +32,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="height col btn btn-dark">Log in</button>
                 </div>
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <a id="forgot-password" class="text-white" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <a class="text-white" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
                 </div>
             </form>
         </section>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
+    <div class="col-md-6 col-md-offset-2 topmargin">
+        <section class="topmargin">
             <h4>Use another service to log in.</h4>
             <hr />
             @{

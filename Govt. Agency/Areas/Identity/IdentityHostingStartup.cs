@@ -1,5 +1,5 @@
-﻿using Govt._Agency.Areas.Identity.Data;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +14,9 @@ namespace Govt._Agency.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<Govt_AgencyContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("Govt_AgencyContext")));
+                        context.Configuration.GetConnectionString("Govt_AgencyContextConnection")));
 
-                services.AddDefaultIdentity<Govt_AgencyUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<Govt_AgencyContext>();
             });
         }

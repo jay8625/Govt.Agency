@@ -12,6 +12,18 @@ a {
   color: #0366d6;
 }
 
+.countrystatemrgn{
+    margin-top:4rem
+}
+
+.tblwd{
+    width:1rem;
+}
+
+.topmargin{
+    margin-top:10rem;
+}
+
 .tmargin{
     margin-top:8rem;
 }

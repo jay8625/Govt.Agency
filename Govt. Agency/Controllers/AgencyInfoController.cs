@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Govt.Agenct.DAL.Model;
-using System.Web;
 using Govt.Agency.Services.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Govt.Agency.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    [Authorize]
     public class AgencyInfoController : Controller
     {
         private readonly IAngencyInfo _angencyInfoRepo;
@@ -22,6 +23,7 @@ namespace Govt._Agency.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         // GET: AgencyInfo
         public IActionResult Index()
         {

@@ -18,7 +18,7 @@ namespace Govt.Agency.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Govt.Agenct.DAL.Model.AgencyInfo", b =>
+            modelBuilder.Entity("Govt.Agency.DAL.Model.AgencyInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
