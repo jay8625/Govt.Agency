@@ -11,11 +11,13 @@ namespace Govt._Agency.Controllers
     {
         private readonly ICity _cityRepo;
         private readonly IState _stateRepo;
+        private readonly ICountry _countryRepo;
 
-        public CityController(ICity cityRepo, IState stateRepo)
+        public CityController(ICity cityRepo, IState stateRepo, ICountry countryRepo)
         {
             _cityRepo = cityRepo;
             _stateRepo = stateRepo;
+            _countryRepo = countryRepo;
         }
 
         // GET: City
@@ -45,6 +47,7 @@ namespace Govt._Agency.Controllers
         public IActionResult Create()
         {
             ViewData["StateId"] = new SelectList(_stateRepo.GetAll(), "Id", "Name");
+            ViewData["CountryId"] = new SelectList(_countryRepo.GetAll(), "Id", "Name");
             return View();
         }
 
