@@ -19,7 +19,8 @@
                     <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <select class="col pos" id="CountryList" asp-items="@ViewBag.Countries">
+                    <label class="control-label">Country</label>
+                    <select class="col form-control form-group" id="CountryList" asp-items="@ViewBag.Countries">
                         <option>Select Country</option>
                     </select>
                 </div>
@@ -36,7 +37,8 @@
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <select class="col pos" id="StateList">
+                    <label class="control-label">State</label>
+                    <select class="col form-control form-group" id="StateList">
                         <option value="-1">Select State</option>
                     </select>
                 </div>
@@ -53,7 +55,8 @@
                     <span asp-validation-for="PostalCode" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <select class="col pos" id="CityList">
+                    <label class="control-label">City</label>
+                    <select class="col form-control form-group" id="CityList">
                         <option>Select City</option>
                     </select>
                 </div>
@@ -69,7 +72,8 @@
         <div class="col-md-12 row borders">
             <div class="row col-md-8">
                 <div class="form-group col-md-6">
-                    <select id="type" class="col" asp-items="@ViewBag.AgencyTypes">
+                    <label class="control-label">Agency Type</label>
+                    <select id="type" class="form-control" asp-items="@ViewBag.AgencyTypes">
                         <option>Select Type</option>
                     </select>
                 </div>
@@ -135,7 +139,7 @@
                     select.empty();
                     select.append($('<option/>', {
                         value: 0,
-                        text: "Select a State"
+                        text: "Select State"
                     }));
                     $.each(classesData, function (index, itemData) {
                         console.log(itemData);
@@ -156,7 +160,7 @@
                     select.empty();
                     select.append($('<option/>', {
                         value: 0,
-                        text: "Select a City"
+                        text: "Select City"
                     }));
                     $.each(classesData, function (index, itemData) {
                         console.log(itemData);

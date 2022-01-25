@@ -18,7 +18,8 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <select class="col pos" id="CountryList" asp-items="ViewBag.CountryId">
+                <label class="control-label">Country</label>
+                <select class="col form-control" id="CountryList" asp-items="ViewBag.CountryId">
                     <option>Select Country</option>
                 </select>
             </div>
@@ -50,7 +51,7 @@
                     select.empty();
                     select.append($('<option/>', {
                         value: 0,
-                        text: "Select a State"
+                        text: "Select State"
                     }));
                     $.each(classesData, function (index, itemData) {
                         console.log(itemData);
