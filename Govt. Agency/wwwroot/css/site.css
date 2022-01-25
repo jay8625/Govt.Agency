@@ -12,9 +12,22 @@ a {
   color: #0366d6;
 }
 
+.tmargin{
+    margin-top:8rem;
+}
+
 .ht{
     height:6rem;
     margin-bottom:0px;
+}
+
+.height{
+    margin-bottom:20px;
+}
+
+.allmargin{
+    margin-top:1rem;
+    margin-bottom:1rem;
 }
 
 #type{
@@ -35,7 +48,7 @@ a {
 }
 
 .rad{
-    border-radius:1rem;
+    border-radius:0.5rem;
 }
 
 .list {

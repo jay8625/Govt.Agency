@@ -1,7 +1,8 @@
 ﻿using Govt.Agency.DAL.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class Govt_AgencyContext : DbContext
+public class Govt_AgencyContext : IdentityDbContext
 {
     public Govt_AgencyContext(DbContextOptions<Govt_AgencyContext> options)
         : base(options)

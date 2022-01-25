@@ -5,23 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20220123183715_GovtAgency.cs" />
-    <Compile Remove="Migrations\20220123183715_GovtAgency.Designer.cs" />
-    <Compile Remove="Migrations\20220124064450_GovtAgency.cs" />
-    <Compile Remove="Migrations\20220124064450_GovtAgency.Designer.cs" />
-    <Compile Remove="Migrations\20220124100133_GovtAgency.cs" />
-    <Compile Remove="Migrations\20220124100133_GovtAgency.Designer.cs" />
-    <Compile Remove="Migrations\20220124110815_GovtAgency.cs" />
-    <Compile Remove="Migrations\20220124110815_GovtAgency.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

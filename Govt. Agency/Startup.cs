@@ -24,6 +24,7 @@ namespace Govt._Agency
 
             services.AddDbContext<Govt_AgencyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Govt_AgencyContext")));
+            services.AddRazorPages();
             services.AddScoped<IAngencyInfo, AgencyInfoRepo>();
             services.AddScoped<ICountry, CountryRepo>();
             services.AddScoped<IAgencyType, AgencyTypeRepo>();
@@ -46,6 +47,8 @@ namespace Govt._Agency
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -53,6 +56,7 @@ namespace Govt._Agency
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
