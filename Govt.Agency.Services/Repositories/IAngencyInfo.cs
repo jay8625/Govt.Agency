@@ -12,7 +12,7 @@ namespace Govt.Agency.Services.Repositories
         void Add(AgencyInfo agencyInfo);
         void Update(AgencyInfo agencyInfo);
         void Delete(int Id);
-        bool any(int Id);
+        bool Any(int Id);
     }
     public class AgencyInfoRepo : IAngencyInfo
     {
@@ -33,7 +33,7 @@ namespace Govt.Agency.Services.Repositories
             _context.SaveChanges();
         }
 
-        public bool any(int Id)
+        public bool Any(int Id)
         {
             if (_context.AgencyInfo.Any(e => e.Id == Id))
             {
@@ -51,7 +51,7 @@ namespace Govt.Agency.Services.Repositories
 
         public void Update(AgencyInfo agencyInfo)
         {
-             _context.Entry(agencyInfo).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(agencyInfo).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
 
@@ -65,11 +65,11 @@ namespace Govt.Agency.Services.Repositories
             return _context.AgencyInfo.Select(x => new vwCreateView()
             {
                 Id = x.Id,
-                Name= x.Name,
-                phone=x.PhoneNumber,
-                Email=x.Email,
-                Address=x.Address,
-                UpdatedDate=x.DateTime
+                Name = x.Name,
+                phone = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                UpdatedDate = x.DateTime
             });
         }
     }

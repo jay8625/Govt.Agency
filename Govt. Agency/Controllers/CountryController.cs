@@ -1,39 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Govt.Agenct.DAL.Model;
+using Govt.Agency.DAL.Model;
 using Govt.Agency.Services.Repositories;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Govt._Agency.Controllers
 {
-    public class AgencyInfoController : Controller
+    public class CountryController : Controller
     {
-        private readonly IAngencyInfo _angencyInfoRepo;
         private readonly ICountry _countryRepo;
-        private readonly IAgencyType _agencyTypeRepo;
 
-
-        public AgencyInfoController(IAngencyInfo angencyInfoRepo, ICountry countryRepo, IAgencyType agencyTypeRepo)
+        public CountryController(ICountry countryRepo)
         {
-            _angencyInfoRepo = angencyInfoRepo;
             _countryRepo = countryRepo;
-            _agencyTypeRepo = agencyTypeRepo;
         }
 
-
-        // GET: AgencyInfo
+        // GET: Country
         public IActionResult Index()
         {
-            return View(_angencyInfoRepo.GetAllViews());
+            return View(_countryRepo.GetAll());
         }
 
-        [HttpGet]
-        public PartialViewResult SideNav()
-        {
-            return PartialView();
-        }
-
-        // GET: AgencyInfo/Details/5
+        // GET: Country/Details/5
         public IActionResult Details(int id)
         {
             if (id == null)
@@ -41,39 +28,37 @@ namespace Govt._Agency.Controllers
                 return NotFound();
             }
 
-            var agencyInfo = _angencyInfoRepo.GetById(id);
-            if (agencyInfo == null)
+            var country = _countryRepo.GetById(id);
+            if (country == null)
             {
                 return NotFound();
             }
 
-            return View(agencyInfo);
+            return View(country);
         }
 
-        // GET: AgencyInfo/Create
+        // GET: Country/Create
         public IActionResult Create()
         {
-            ViewBag.Countries = new SelectList(_countryRepo.GetAll(), "Id", "Name");
-            ViewBag.AgencyTypes=new SelectList(_agencyTypeRepo.GetAll(), "Id", "Name");
             return View();
         }
 
-        // POST: AgencyInfo/Create
+        // POST: Country/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
+        public IActionResult Create([Bind("Id,Name")] Country country)
         {
             if (ModelState.IsValid)
             {
-                _angencyInfoRepo.Add(agencyInfo);
+                _countryRepo.Add(country);
                 return RedirectToAction(nameof(Index));
             }
-            return View(agencyInfo);
+            return View(country);
         }
 
-        // GET: AgencyInfo/Edit/5
+        // GET: Country/Edit/5
         public IActionResult Edit(int id)
         {
             if (id == null)
@@ -81,22 +66,22 @@ namespace Govt._Agency.Controllers
                 return NotFound();
             }
 
-            var agencyInfo = _angencyInfoRepo.GetById(id);
-            if (agencyInfo == null)
+            var country = _countryRepo.GetById(id);
+            if (country == null)
             {
                 return NotFound();
             }
-            return View(agencyInfo);
+            return View(country);
         }
 
-        // POST: AgencyInfo/Edit/5
+        // POST: Country/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
+        public IActionResult Edit(int id, [Bind("Id,Name")] Country country)
         {
-            if (id != agencyInfo.Id)
+            if (id != country.Id)
             {
                 return NotFound();
             }
@@ -105,11 +90,11 @@ namespace Govt._Agency.Controllers
             {
                 try
                 {
-                    _angencyInfoRepo.Update(agencyInfo);
+                    _countryRepo.Update(country);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AgencyInfoExists(agencyInfo.Id))
+                    if (!CountryExists(country.Id))
                     {
                         return NotFound();
                     }
@@ -120,10 +105,10 @@ namespace Govt._Agency.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(agencyInfo);
+            return View(country);
         }
 
-        // GET: AgencyInfo/Delete/5
+        // GET: Country/Delete/5
         public IActionResult Delete(int id)
         {
             if (id == null)
@@ -131,27 +116,27 @@ namespace Govt._Agency.Controllers
                 return NotFound();
             }
 
-            var agencyInfo = _angencyInfoRepo.GetById(id);
-            if (agencyInfo == null)
+            var country = _countryRepo.GetById(id);
+            if (country == null)
             {
                 return NotFound();
             }
 
-            return View(agencyInfo);
+            return View(country);
         }
 
-        // POST: AgencyInfo/Delete/5
+        // POST: Country/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _angencyInfoRepo.Delete(id);
+            _countryRepo.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AgencyInfoExists(int id)
+        private bool CountryExists(int id)
         {
-            return _angencyInfoRepo.Any(id);
+            return _countryRepo.Any(id);
         }
     }
 }

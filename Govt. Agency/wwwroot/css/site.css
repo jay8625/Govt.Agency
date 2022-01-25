@@ -46,6 +46,7 @@ a {
 
 .borders{
     border-style:groove;
+    border-radius:1rem;
 }
 
 .space {
@@ -133,3 +134,6 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+

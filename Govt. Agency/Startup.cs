@@ -25,6 +25,10 @@ namespace Govt._Agency
             services.AddDbContext<Govt_AgencyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Govt_AgencyContext")));
             services.AddScoped<IAngencyInfo, AgencyInfoRepo>();
+            services.AddScoped<ICountry, CountryRepo>();
+            services.AddScoped<IAgencyType, AgencyTypeRepo>();
+            services.AddScoped<IState, StateRepo>();
+            services.AddScoped<ICity, CityRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

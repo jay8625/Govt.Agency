@@ -125,11 +125,11 @@
 }
 }
 
-<script type="text/javascript">
-    $(document).ready(function () {
+<script>
+      $(document).ready(function () {
         $("#CountryList").change(function () {
             var countryId = $(this).val();
-            $.getJSON("../AgencyInfo/LoadStates", { countryId: countryId },
+            $.getJSON("../State/LoadStates", { countryId: countryId },
                 function (classesData) {
                     var select = $("#StateList");
                     select.empty();
@@ -147,10 +147,25 @@
                 });
         });
     });
-</script> 
-
-
-
-
-
-
+     $(document).ready(function () {
+        $("#StateList").change(function () {
+            var stateId = $(this).val();
+            $.getJSON("../City/LoadCities", { stateId: stateId },
+                function (classesData) {
+                    var select = $("#CityList");
+                    select.empty();
+                    select.append($('<option/>', {
+                        value: 0,
+                        text: "Select a City"
+                    }));
+                    $.each(classesData, function (index, itemData) {
+                        console.log(itemData);
+                        select.append($('<option/>', {
+                            value: itemData.value,
+                            text: itemData.text
+                        }));
+                    });
+                });
+        });
+    });
+</script>
