@@ -1,4 +1,4 @@
-﻿@model Govt.Agency.DAL.Model.AgencyInfo
+﻿@model Govt.Agency.Services.ViewModel.vmAgencyCreate
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
-<form asp-action="Create">
+<form enctype="multipart/form-data" asp-action="Create">
     <div class="row">
         <h4>PropertyInfo</h4>
         <hr />
@@ -63,9 +63,11 @@
                 <div class="form-group">
                     <label asp-for="GovtImage" class="control-label"></label>
                     <div class="mb-3">
-                        <input class="form-control" asp-for="GovtImage" id="formFile">
+                        <div class="custom-file">
+                            <input class="form-control custom-file-input" asp-for="GovtImage">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
                     </div>
-                    <span asp-validation-for="GovtImage" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -126,10 +128,19 @@
 </form>
 
 @section Scripts {
+<script>
+         $(document).ready(function(){
+        $('.custom-file-input').on("change",function(){
+            var fileName=$(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }
 }
+
 
 <script>
       $(document).ready(function () {

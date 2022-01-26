@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Govt.Agency.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using Govt.Agency.Services.ViewModel;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System;
 
 namespace Govt._Agency.Controllers
 {
@@ -14,13 +18,14 @@ namespace Govt._Agency.Controllers
         private readonly IAngencyInfo _angencyInfoRepo;
         private readonly ICountry _countryRepo;
         private readonly IAgencyType _agencyTypeRepo;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-
-        public AgencyInfoController(IAngencyInfo angencyInfoRepo, ICountry countryRepo, IAgencyType agencyTypeRepo)
+        public AgencyInfoController(IAngencyInfo angencyInfoRepo, ICountry countryRepo, IAgencyType agencyTypeRepo, IHostingEnvironment hostingEnvironment)
         {
             _angencyInfoRepo = angencyInfoRepo;
             _countryRepo = countryRepo;
             _agencyTypeRepo = agencyTypeRepo;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
 
@@ -95,14 +100,43 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] AgencyInfo agencyInfo)
+        public IActionResult Create([Bind("Id,Address,City,Name,PostalCode,Country,State,Email,OfficePhone,PhoneNumber,GovtImage,Type,JurisdictionalBoundaries,Description,Broucher,AidOrganization,BroucherCopy,Comments,Notify,DocumentAttachment")] vmAgencyCreate model)
         {
             if (ModelState.IsValid)
             {
+                string UniqueFile = null;
+                if (model.GovtImage!=null)
+                {
+                    string upload= Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    UniqueFile=Guid.NewGuid().ToString() + "_" + model.GovtImage.FileName;
+                    string path=Path.Combine(upload, UniqueFile);
+                    model.GovtImage.CopyTo(new FileStream(path, FileMode.Create));
+                }
+                AgencyInfo agencyInfo = new AgencyInfo
+                {
+                    Name=model.Name,
+                    Address=model.Address,
+                    City=model.City,
+                    PostalCode=model.PostalCode,
+                    Country=model.Country,
+                    State=model.State,
+                    Email=model.Email,
+                    OfficePhone=model.OfficePhone,
+                    PhoneNumber=model.PhoneNumber,
+                    Type=model.Type,
+                    Description=model.Description,
+                    Broucher=model.Broucher,
+                    AidOrganization=model.AidOrganization,
+                    BroucherCopy=model.BroucherCopy,
+                    Comments=model.Comments,
+                    DocumentAttachment=model.DocumentAttachment,
+                    DateTime=model.DateTime,
+                    GovtImage=UniqueFile
+                };
                 _angencyInfoRepo.Add(agencyInfo);
                 return RedirectToAction(nameof(Index));
             }
-            return View(agencyInfo);
+            return View();
         }
 
         // GET: AgencyInfo/Edit/5
