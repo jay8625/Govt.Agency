@@ -185,5 +185,25 @@ namespace Govt._Agency.Controllers
         {
             return _angencyInfoRepo.Any(id);
         }
+
+        public IActionResult SortByName()
+        {
+            return View("Index",_angencyInfoRepo.SortByName());
+        }
+
+        public IActionResult SortByPhone()
+        {
+            return View("Index", _angencyInfoRepo.SortByPhone());
+        }
+
+        public IActionResult SortByEmail()
+        {
+            return View("Index", _angencyInfoRepo.SortByEmail());
+        }
+
+        public IActionResult SortByDate()
+        {
+            return View("Index", _angencyInfoRepo.SortByDate());
+        }
     }
 }

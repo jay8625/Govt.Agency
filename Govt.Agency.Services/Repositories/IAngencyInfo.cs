@@ -14,6 +14,10 @@ namespace Govt.Agency.Services.Repositories
         void Update(AgencyInfo agencyInfo);
         void Delete(int Id);
         bool Any(int Id);
+        List<vwCreateView> SortByName();
+        List<vwCreateView> SortByPhone();
+        List<vwCreateView> SortByEmail();
+        List<vwCreateView> SortByDate();
     }
     public class AgencyInfoRepo : IAngencyInfo
     {
@@ -73,6 +77,58 @@ namespace Govt.Agency.Services.Repositories
                 Address = x.Address,
                 UpdatedDate = x.DateTime
             });
+        }
+
+        public List<vwCreateView> SortByName()
+        {
+            return _context.AgencyInfo.Select(x => new vwCreateView()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                phone = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                UpdatedDate = x.DateTime
+            }).OrderBy(x => x.Name).ToList();
+        }
+
+        public List<vwCreateView> SortByPhone()
+        {
+            return _context.AgencyInfo.Select(x => new vwCreateView()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                phone = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                UpdatedDate = x.DateTime
+            }).OrderBy(x => x.phone).ToList();
+        }
+
+        public List<vwCreateView> SortByEmail()
+        {
+            return _context.AgencyInfo.Select(x => new vwCreateView()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                phone = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                UpdatedDate = x.DateTime
+            }).OrderBy(x => x.Email).ToList();
+        }
+
+        public List<vwCreateView> SortByDate()
+        {
+            return _context.AgencyInfo.Select(x => new vwCreateView()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                phone = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                UpdatedDate = x.DateTime
+            }).OrderBy(x => x.UpdatedDate).ToList();
         }
     }
 }
