@@ -1,4 +1,5 @@
 ﻿using Govt.Agency.DAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,6 +30,7 @@ namespace Govt.Agency.Services.Repositories
         }
         public void Add(AgencyInfo agencyInfo)
         {
+            agencyInfo.DateTime = DateTime.Now;
             _context.Add(agencyInfo);
             _context.SaveChanges();
         }

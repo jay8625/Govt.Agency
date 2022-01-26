@@ -4,59 +4,79 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Registered Agencies</h1>
+<div class="row">
+    <h1>Registered Agencies</h1>
+
+    <p class="offset-6 pos createbtn">
+        <a class="btn btn-info" asp-action="Create">Add Agency</a>
+    </p>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @using (Html.BeginForm("Index", "AgencyInfo", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="form-check col-md-9">
+                <b>Search by :</b> @Html.RadioButton("SearchBy","Name",true) <text>Name</text>
+                @Html.RadioButton("SearchBy","Phone") <text>Phone</text>
+                @Html.RadioButton("SearchBy","Email") <text>Email</text>
+                @Html.RadioButton("SearchBy","Address") <text>Address</text> <br />
+            </div>
+            @Html.TextBox("Search") <input class="btn btn-info" type="submit" value="Search" />
+        </div>
+    }
 </p>
 
 
 <table id="example4" class="table table-striped table-bordered" style="width:100%">
-    <thead>
+    <thead class="bg-dark">
         <tr>
-             <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-             <th>
-                @Html.DisplayNameFor(model => model.phone)
-            </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.Name)<i class="bi bi-sort-up"></i></a>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
+            <th class="tblwd2">
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.phone)<i class="bi bi-sort-up"></i></a>
             </th>
             <th class="tblwd">
-                @Html.DisplayNameFor(model => model.UpdatedDate)
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.Email)<i class="bi bi-sort-up"></i></a>
             </th>
-            <th></th>
+            <th class="tblwd1">
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.Address)<i class="bi bi-sort-up"></i></a>
+            </th>
+            <th class="tblwd">
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.UpdatedDate)<i class="bi bi-sort-up"></i></a>
+            </th>
+            <th class="tblwd2">
+                <a class="text-white">Actions</a>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    <a style="color:#5cb85c" class="fa-lg bi bi-pencil-square" asp-action="Edit" asp-route-id="@item.Id"></a> |
+                    <a style="color:#0275d8" class="fa-lg bi bi-collection-fill" asp-action="Details" asp-route-id="@item.Id"></a> |
+                    <a style="color:#d9534f" class="fa-lg bi bi-trash-fill" asp-action="Delete" asp-route-id="@item.Id"></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

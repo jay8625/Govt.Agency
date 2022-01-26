@@ -12,12 +12,24 @@ a {
   color: #0366d6;
 }
 
+.createbtn{
+    padding-left:3rem;
+}
+
 .countrystatemrgn{
     margin-top:4rem
 }
 
 .tblwd{
-    width:1rem;
+    width:9rem;
+}
+
+.tblwd1{
+    width:15rem;
+}
+
+.tblwd2 {
+    width: 7rem;
 }
 
 .topmargin{

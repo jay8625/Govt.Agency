@@ -4,6 +4,7 @@ using Govt.Agency.Services.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Govt.Agency.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace Govt._Agency.Controllers
 {
@@ -25,9 +26,37 @@ namespace Govt._Agency.Controllers
 
         [Authorize(Roles = "Admin")]
         // GET: AgencyInfo
-        public IActionResult Index()
+        public IActionResult Index(string searchBy, string search)
         {
-            return View(_angencyInfoRepo.GetAllViews());
+            var agency = _angencyInfoRepo.GetAllViews().ToList();
+            if (search != null)
+            {
+                if (searchBy == "Name")
+                {
+                    string srcname = search.ToLower();
+                    agency = agency.Where(x => x.Name.ToLower().Contains(srcname)).ToList();
+                    return View(agency);
+                }
+                if (searchBy == "Phone")
+                {
+                    string srcname = search.ToLower();
+                    agency = agency.Where(x => x.phone.Contains(srcname)).ToList();
+                    return View(agency);
+                }
+                if (searchBy == "Email")
+                {
+                    string srcname = search.ToLower();
+                    agency = agency.Where(x => x.Email.ToLower().Contains(srcname)).ToList();
+                    return View(agency);
+                }
+                if (searchBy == "Address")
+                {
+                    string srcname = search.ToLower();
+                    agency = agency.Where(x => x.Address.ToLower().Contains(srcname)).ToList();
+                    return View(agency);
+                }
+            }
+            return View(agency);
         }
 
         [HttpGet]
@@ -57,7 +86,7 @@ namespace Govt._Agency.Controllers
         public IActionResult Create()
         {
             ViewBag.Countries = new SelectList(_countryRepo.GetAll(), "Id", "Name");
-            ViewBag.AgencyTypes=new SelectList(_agencyTypeRepo.GetAll(), "Id", "Name");
+            ViewBag.AgencyTypes = new SelectList(_agencyTypeRepo.GetAll(), "Id", "Name");
             return View();
         }
 
