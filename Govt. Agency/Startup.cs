@@ -22,9 +22,11 @@ namespace Govt._Agency
         {
             services.AddControllersWithViews();
 
+            //Conection String Added
             services.AddDbContext<Govt_AgencyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Govt_AgencyContext")));
             services.AddRazorPages();
+            //Services Injected
             services.AddScoped<IAngencyInfo, AgencyInfoRepo>();
             services.AddScoped<ICountry, CountryRepo>();
             services.AddScoped<IAgencyType, AgencyTypeRepo>();

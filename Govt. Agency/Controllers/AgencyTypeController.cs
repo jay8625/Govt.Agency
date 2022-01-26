@@ -1,26 +1,27 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Govt.Agency.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
+using Govt.Agency.Services.Repositories;
 
 namespace Govt._Agency.Controllers
 {
+    //Authorize Validation Applied
     [Authorize(Roles = "Admin")]
     public class AgencyTypeController : Controller
     {
-        private readonly Govt_AgencyContext _context;
+        //Services Injected 
+        private readonly IAgencyType _agencyType;
 
-        public AgencyTypeController(Govt_AgencyContext context)
+        public AgencyTypeController(IAgencyType agencyType)
         {
-            _context = context;
+            _agencyType = agencyType;
         }
 
+
         // GET: AgencyType
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.AgencyTypes.ToListAsync());
+            return View(_agencyType.GetAll());
         }
 
         // GET: AgencyType/Create
@@ -34,27 +35,25 @@ namespace Govt._Agency.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AgencyType agencyType)
+        public IActionResult Create([Bind("Id,Name")] AgencyType agencyType)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(agencyType);
-                await _context.SaveChangesAsync();
+                _agencyType.Add(agencyType);
                 return RedirectToAction(nameof(Index));
             }
             return View(agencyType);
         }
 
         // GET: AgencyType/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var agencyType = await _context.AgencyTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var agencyType = _agencyType.GetById(id);
             if (agencyType == null)
             {
                 return NotFound();
@@ -66,17 +65,16 @@ namespace Govt._Agency.Controllers
         // POST: AgencyType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var agencyType = await _context.AgencyTypes.FindAsync(id);
-            _context.AgencyTypes.Remove(agencyType);
-            await _context.SaveChangesAsync();
+            _agencyType.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
+        //Any Type Condition
         private bool AgencyTypeExists(int id)
         {
-            return _context.AgencyTypes.Any(e => e.Id == id);
+            return _agencyType.Any(id);
         }
     }
 }

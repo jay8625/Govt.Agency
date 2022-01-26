@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Govt.Agency.DAL.Model;
@@ -9,9 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    //Authorize Validation Applied
     [Authorize(Roles = "Admin")]
     public class StateController : Controller
     {
+        //Services Injected
         private readonly IState _stateRepo;
         private readonly ICountry _countryRepo;
 
@@ -145,7 +146,9 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Anonymous Validation applied
         [AllowAnonymous]
+        //Loads States under Country
         public JsonResult LoadStates(int countryId)
         {
             var stateList = _stateRepo.GetAll();
@@ -153,6 +156,7 @@ namespace Govt._Agency.Controllers
             return Json(new SelectList(states, "Id", "Name"));
         }
 
+        //Any State Condition
         private bool StateExists(int id)
         {
             return _stateRepo.Any(id);

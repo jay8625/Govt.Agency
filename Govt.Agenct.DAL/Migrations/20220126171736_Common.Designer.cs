@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Govt.Agency.DAL.Migrations
 {
     [DbContext(typeof(Govt_AgencyContext))]
-    [Migration("20220125162841_Common")]
+    [Migration("20220126171736_Common")]
     partial class Common
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,9 +52,6 @@ namespace Govt.Agency.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DocumentAttachment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")

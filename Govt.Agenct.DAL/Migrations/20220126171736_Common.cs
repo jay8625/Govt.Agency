@@ -29,7 +29,6 @@ namespace Govt.Agency.DAL.Migrations
                     AidOrganization = table.Column<bool>(nullable: false),
                     BroucherCopy = table.Column<bool>(nullable: false),
                     Comments = table.Column<string>(nullable: true),
-                    DocumentAttachment = table.Column<string>(nullable: true),
                     DateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

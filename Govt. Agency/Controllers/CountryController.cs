@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    //Authorize validation Applied 
     [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
+        //Services Injected 
         private readonly ICountry _countryRepo;
 
         public CountryController(ICountry countryRepo)
@@ -136,6 +138,7 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Any Country Condition
         private bool CountryExists(int id)
         {
             return _countryRepo.Any(id);

@@ -12,9 +12,11 @@ using System;
 
 namespace Govt._Agency.Controllers
 {
+    //Authorize validation
     [Authorize]
     public class AgencyInfoController : Controller
     {
+        // Servies Injected
         private readonly IAngencyInfo _angencyInfoRepo;
         private readonly ICountry _countryRepo;
         private readonly IAgencyType _agencyTypeRepo;
@@ -28,7 +30,7 @@ namespace Govt._Agency.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
-
+        //Accessable to Admin
         [Authorize(Roles = "Admin")]
         // GET: AgencyInfo
         public IActionResult Index(string searchBy, string search)
@@ -36,24 +38,28 @@ namespace Govt._Agency.Controllers
             var agency = _angencyInfoRepo.GetAllViews().ToList();
             if (search != null)
             {
+                //Search by name 
                 if (searchBy == "Name")
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Name.ToLower().Contains(srcname)).ToList();
                     return View(agency);
                 }
+                //Search by phone
                 if (searchBy == "Phone")
                 {
                     string srcname = search.ToLower();
-                    agency = agency.Where(x => x.phone.Contains(srcname)).ToList();
+                    agency = agency.Where(x => x.Phone.Contains(srcname)).ToList();
                     return View(agency);
                 }
+                //Search by Email
                 if (searchBy == "Email")
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Email.ToLower().Contains(srcname)).ToList();
                     return View(agency);
                 }
+                //Search by Address
                 if (searchBy == "Address")
                 {
                     string srcname = search.ToLower();
@@ -64,6 +70,7 @@ namespace Govt._Agency.Controllers
             return View(agency);
         }
 
+        //Side Nav Method
         [HttpGet]
         public PartialViewResult SideNav()
         {
@@ -90,6 +97,7 @@ namespace Govt._Agency.Controllers
         // GET: AgencyInfo/Create
         public IActionResult Create()
         {
+            //Data carried to View
             ViewBag.Countries = new SelectList(_countryRepo.GetAll(), "Id", "Name");
             ViewBag.AgencyTypes = new SelectList(_agencyTypeRepo.GetAll(), "Id", "Name");
             return View();
@@ -107,11 +115,13 @@ namespace Govt._Agency.Controllers
                 string UniqueFile = null;
                 if (model.GovtImage!=null)
                 {
+                    //Image upload Logic
                     string upload= Path.Combine(hostingEnvironment.WebRootPath, "Images");
                     UniqueFile=Guid.NewGuid().ToString() + "_" + model.GovtImage.FileName;
                     string path=Path.Combine(upload, UniqueFile);
                     model.GovtImage.CopyTo(new FileStream(path, FileMode.Create));
                 }
+                //Assigning model from View model
                 AgencyInfo agencyInfo = new AgencyInfo
                 {
                     Name=model.Name,
@@ -129,12 +139,11 @@ namespace Govt._Agency.Controllers
                     AidOrganization=model.AidOrganization,
                     BroucherCopy=model.BroucherCopy,
                     Comments=model.Comments,
-                    DocumentAttachment=model.DocumentAttachment,
                     DateTime=model.DateTime,
                     GovtImage=UniqueFile
                 };
                 _angencyInfoRepo.Add(agencyInfo);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
             return View();
         }
@@ -215,26 +224,31 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Any Agency Condition
         private bool AgencyInfoExists(int id)
         {
             return _angencyInfoRepo.Any(id);
         }
 
+        //Sort by Name Action Method
         public IActionResult SortByName()
         {
             return View("Index",_angencyInfoRepo.SortByName());
         }
 
+        //Sort by Phone Action Method
         public IActionResult SortByPhone()
         {
             return View("Index", _angencyInfoRepo.SortByPhone());
         }
 
+        //Sort by Email Action Method
         public IActionResult SortByEmail()
         {
             return View("Index", _angencyInfoRepo.SortByEmail());
         }
 
+        //Sort by Date Action Method
         public IActionResult SortByDate()
         {
             return View("Index", _angencyInfoRepo.SortByDate());

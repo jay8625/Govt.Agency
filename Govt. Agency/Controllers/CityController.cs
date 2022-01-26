@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Govt._Agency.Controllers
 {
+    //Authorize by Admin Applied
     [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
+        //Services Injected
         private readonly ICity _cityRepo;
         private readonly IState _stateRepo;
         private readonly ICountry _countryRepo;
@@ -48,6 +50,7 @@ namespace Govt._Agency.Controllers
         // GET: City/Create
         public IActionResult Create()
         {
+            //carried data to view
             ViewData["StateId"] = new SelectList(_stateRepo.GetAll(), "Id", "Name");
             ViewData["CountryId"] = new SelectList(_countryRepo.GetAll(), "Id", "Name");
             return View();
@@ -147,7 +150,9 @@ namespace Govt._Agency.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Anonymous Validation applies
         [AllowAnonymous]
+        //Get Method gets all cities
         public JsonResult LoadCities(int stateId)
         {
             var cityList=_cityRepo.GetAll();
@@ -155,6 +160,7 @@ namespace Govt._Agency.Controllers
             return Json(new SelectList(cities, "Id", "Name"));
         }
 
+        //Any city Condition
         private bool CityExists(int id)
         {
             return _cityRepo.Any(id);

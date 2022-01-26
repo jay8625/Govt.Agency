@@ -35,7 +35,7 @@
                 <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByName">@Html.DisplayNameFor(model => model.Name)<i class="bi bi-sort-up"></i></a>
             </th>
             <th class="tblwd2">
-                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByPhone">@Html.DisplayNameFor(model => model.phone)<i class="bi bi-sort-up"></i></a>
+                <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByPhone">@Html.DisplayNameFor(model => model.Phone)<i class="bi bi-sort-up"></i></a>
             </th>
             <th class="tblwd">
                 <a class="text-white text-decoration-none" asp-controller="AgencyInfo" asp-action="SortByEmail">@Html.DisplayNameFor(model => model.Email)<i class="bi bi-sort-up"></i></a>
@@ -59,7 +59,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.phone)
+                    @Html.DisplayFor(modelItem => item.Phone)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)

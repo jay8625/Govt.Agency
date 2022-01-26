@@ -14,7 +14,7 @@ namespace Govt.Agency.DAL.Model
         public string Country { get; set; }
         public string State { get; set; }
         public string Email { get; set; }
-        public string OfficePhone { get; set; } 
+        public string OfficePhone { get; set; }
         public string PhoneNumber { get; set; }
         public string GovtImage { get; set; }
         public string Type { get; set; }
@@ -23,7 +23,6 @@ namespace Govt.Agency.DAL.Model
         public bool AidOrganization { get; set; }
         public bool BroucherCopy { get; set; }
         public string Comments { get; set; }
-        public string DocumentAttachment { get; set; }
         public DateTime DateTime { get; set; }
     }
 }
