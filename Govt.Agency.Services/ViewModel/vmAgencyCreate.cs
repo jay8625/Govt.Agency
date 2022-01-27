@@ -18,7 +18,7 @@ namespace Govt.Agency.Services.ViewModel
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Please Enter Pincode")]
-        [Display(Name = "PostalCode")]
+        [Display(Name = "Postal Code")]
         public int PostalCode { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
@@ -29,12 +29,14 @@ namespace Govt.Agency.Services.ViewModel
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Phone no")]
-        [Display(Name = "OfficePhone")]
+        [Display(Name = "Office Phone")]
         public string OfficePhone { get; set; }
 
         [Required(ErrorMessage = "Please Enter Phone no")]
         [Display(Name = "24X7 phone no.")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Govt. Id")]
         public IFormFile GovtImage { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }

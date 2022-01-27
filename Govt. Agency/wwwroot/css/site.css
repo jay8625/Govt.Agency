@@ -12,6 +12,10 @@ a {
   color: #0366d6;
 }
 
+.searchbtn{
+    margin-left:1rem;
+}
+
 .createbtn{
     padding-left:3rem;
 }
@@ -21,7 +25,7 @@ a {
 }
 
 .tblwd{
-    width:9rem;
+    width:10rem;
 }
 
 .tblwd1{

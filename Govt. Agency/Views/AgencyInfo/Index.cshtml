@@ -7,7 +7,7 @@
 <div class="row">
     <h1>Registered Agencies</h1>
 
-    <p class="offset-6 pos createbtn">
+    <p class="offset-6 pos">
         <a class="btn btn-info" asp-action="Create">Add Agency</a>
     </p>
 </div>
@@ -16,13 +16,13 @@
     @using (Html.BeginForm("Index", "AgencyInfo", FormMethod.Get))
     {
         <div class="row">
-            <div class="form-check col-md-9">
+            <div class="form-check col-md-8">
                 <b>Search by :</b> @Html.RadioButton("SearchBy","Name",true) <text>Name</text>
                 @Html.RadioButton("SearchBy","Phone") <text>Phone</text>
                 @Html.RadioButton("SearchBy","Email") <text>Email</text>
                 @Html.RadioButton("SearchBy","Address") <text>Address</text> <br />
             </div>
-            @Html.TextBox("Search") <input class="btn btn-info" type="submit" value="Search" />
+            @Html.TextBox("Search") <input class="btn btn-info searchbtn" type="submit" value="Search" />
         </div>
     }
 </p>

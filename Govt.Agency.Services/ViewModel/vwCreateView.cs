@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Govt.Agency.Services
 {
@@ -10,6 +11,8 @@ namespace Govt.Agency.Services
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+
+        [Display(Name = "Updated Date")]
         public DateTime UpdatedDate { get; set; }
     }
 }
