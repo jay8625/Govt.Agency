@@ -1,4 +1,5 @@
 ﻿using Govt.Agency.DAL.Model;
+using Govt.Agency.Services.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Govt.Agency.Services.Repositories
     public interface ICity
     {
         IEnumerable<City> GetAll();
+        IEnumerable<vmCity> vmGetAll();
         City GetById(int Id);
         void Add(City city);
         void Update(City city);
@@ -69,6 +71,16 @@ namespace Govt.Agency.Services.Repositories
         {
             _context.Entry(city).State = EntityState.Modified;
             _context.SaveChanges();
+        }
+
+        public IEnumerable<vmCity> vmGetAll()
+        {
+            return _context.Citys.Select(x => new vmCity
+            {
+                Id = x.Id,
+                Name = x.Name,
+                StateName = _context.States.Where(s=>s.Id==x.StateId).Select(z=>z.Name).FirstOrDefault()
+            });
         }
     }
 }

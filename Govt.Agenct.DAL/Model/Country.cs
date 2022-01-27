@@ -7,6 +7,9 @@ namespace Govt.Agency.DAL.Model
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Country")]
+        [Display(Name ="Country Name")]
         public string Name { get; set; }
         public ICollection<State> State { get; set; }
     }

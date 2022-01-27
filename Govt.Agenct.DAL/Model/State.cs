@@ -8,6 +8,9 @@ namespace Govt.Agency.DAL.Model
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please Enter State")]
+        [Display(Name ="State Name")]
         public string Name { get; set; }
         public int? CountryId { get; set; }
         [ForeignKey(nameof(CountryId))]

@@ -19,15 +19,19 @@ namespace Govt._Agency.Controllers
         // Servies Injected
         private readonly IAngencyInfo _angencyInfoRepo;
         private readonly ICountry _countryRepo;
+        private readonly IState _state;
+        private readonly ICity _city;
         private readonly IAgencyType _agencyTypeRepo;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public AgencyInfoController(IAngencyInfo angencyInfoRepo, ICountry countryRepo, IAgencyType agencyTypeRepo, IHostingEnvironment hostingEnvironment)
+        public AgencyInfoController(IAngencyInfo angencyInfoRepo, ICountry countryRepo, IAgencyType agencyTypeRepo, IHostingEnvironment hostingEnvironment, IState state, ICity city)
         {
             _angencyInfoRepo = angencyInfoRepo;
             _countryRepo = countryRepo;
             _agencyTypeRepo = agencyTypeRepo;
             this.hostingEnvironment = hostingEnvironment;
+            _state = state;
+            _city = city;
         }
 
         //Accessable to Admin
@@ -121,19 +125,23 @@ namespace Govt._Agency.Controllers
                     string path=Path.Combine(upload, UniqueFile);
                     model.GovtImage.CopyTo(new FileStream(path, FileMode.Create));
                 }
+                var countries = _countryRepo.GetAll();
+                var states= _state.GetAll();
+                var cities= _city.GetAll();
+                var agencyType = _agencyTypeRepo.GetAll();
                 //Assigning model from View model
                 AgencyInfo agencyInfo = new AgencyInfo
                 {
                     Name=model.Name,
                     Address=model.Address,
-                    City=model.City,
+                    City=cities.Where(x=>x.Id==Convert.ToInt32(model.City)).Select(s=>s.Name).FirstOrDefault(),
                     PostalCode=model.PostalCode,
-                    Country=model.Country,
-                    State=model.State,
+                    Country= countries.Where(x=>x.Id== Convert.ToInt32(model.Country)).Select(s=>s.Name).FirstOrDefault(),
+                    State= states.Where(x=>x.Id== Convert.ToInt32(model.State)).Select(s=>s.Name).FirstOrDefault(),
                     Email=model.Email,
                     OfficePhone=model.OfficePhone,
                     PhoneNumber=model.PhoneNumber,
-                    Type=model.Type,
+                    Type= agencyType.Where(x=>x.Id==Convert.ToInt32(model.Type)).Select(s=>s.Name).FirstOrDefault(),
                     Description=model.Description,
                     Broucher=model.Broucher,
                     AidOrganization=model.AidOrganization,

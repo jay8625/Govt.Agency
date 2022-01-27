@@ -25,7 +25,7 @@ namespace Govt._Agency.Controllers
         // GET: State
         public IActionResult Index()
         {
-            return View(_stateRepo.GetAll());
+            return View(_stateRepo.vmGetAll());
         }
 
         // GET: State/Details/5

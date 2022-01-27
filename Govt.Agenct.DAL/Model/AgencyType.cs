@@ -6,6 +6,8 @@ namespace Govt.Agency.DAL.Model
     {
         [Key]
         public int Id { get; set; }
+
+        [Display(Name ="Agency Name")]
         public string Name { get; set; }
     }
 }

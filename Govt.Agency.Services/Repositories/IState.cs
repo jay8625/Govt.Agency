@@ -1,4 +1,5 @@
 ﻿using Govt.Agency.DAL.Model;
+using Govt.Agency.Services.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,7 @@ namespace Govt.Agency.Services.Repositories
     public interface IState
     {
         IEnumerable<State> GetAll();
+        IEnumerable<vmState> vmGetAll();
         State GetById(int Id);
         void Add(State state);
         void Update(State state);
@@ -68,6 +70,16 @@ namespace Govt.Agency.Services.Repositories
         {
             _context.Entry(state).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
+        }
+
+        public IEnumerable<vmState> vmGetAll()
+        {
+            return _context.States.Select(x => new vmState
+            {
+                Id = x.Id,
+                Name= x.Name,
+                CountryName=_context.Countries.Where(s=>s.Id==x.CountryId).Select(z=>z.Name).FirstOrDefault()
+            });
         }
     }
 }

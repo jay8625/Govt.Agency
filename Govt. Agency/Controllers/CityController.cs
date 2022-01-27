@@ -27,7 +27,7 @@ namespace Govt._Agency.Controllers
         // GET: City
         public IActionResult Index()
         {
-            return View(_cityRepo.GetAll());
+            return View(_cityRepo.vmGetAll());
         }
 
         // GET: City/Details/5

@@ -16,6 +16,12 @@ a {
     margin-left:1rem;
 }
 
+.required::after {
+    content: "*";
+    font-weight: bold;
+    color: red;
+}
+
 .createbtn{
     padding-left:3rem;
 }
