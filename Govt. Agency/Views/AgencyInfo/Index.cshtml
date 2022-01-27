@@ -79,4 +79,21 @@
         }
     </tbody>
 </table>
-
+@{
+    double totalPages = ViewBag.TotalPages;
+    for (int i = 1; i <= totalPages; i++)
+    {
+        @if (i == ViewBag.PageNo)
+        {
+            <span class="btn btn-outline-info">
+                @Html.ActionLink(i.ToString(),"Index",new{PageNumber=i})
+            </span>
+        }
+        else
+        {
+            <span class="btn">
+                @Html.ActionLink(i.ToString(),"Index",new{PageNumber=i})
+            </span>
+        }
+    }
+}

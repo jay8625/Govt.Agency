@@ -2,22 +2,33 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
-.ckbtn{
-    margin-top:4rem;
+.jobs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.searchbtn{
-    margin-left:1rem;
+    .jobs > li {
+        display: inline-block;
+    }
+
+
+.ckbtn {
+    margin-top: 4rem;
+}
+
+.searchbtn {
+    margin-left: 1rem;
 }
 
 .required::after {
@@ -26,62 +37,62 @@ a {
     color: red;
 }
 
-.createbtn{
-    padding-left:3rem;
+.createbtn {
+    padding-left: 3rem;
 }
 
-.countrystatemrgn{
-    margin-top:4rem
+.countrystatemrgn {
+    margin-top: 4rem
 }
 
-.tblwd{
-    width:10rem;
+.tblwd {
+    width: 10rem;
 }
 
-.tblwd1{
-    width:15rem;
+.tblwd1 {
+    width: 15rem;
 }
 
 .tblwd2 {
     width: 7rem;
 }
 
-.btns{
-    margin-top:4rem;
+.btns {
+    margin-top: 4rem;
 }
 
-.topmargin{
-    margin-top:10rem;
+.topmargin {
+    margin-top: 10rem;
 }
 
-.tmargin{
-    margin-top:8rem;
+.tmargin {
+    margin-top: 8rem;
 }
 
-.ht{
-    height:6rem;
-    margin-bottom:0px;
+.ht {
+    height: 6rem;
+    margin-bottom: 0px;
 }
 
-.height{
-    margin-bottom:20px;
+.height {
+    margin-bottom: 20px;
 }
 
-.allmargin{
-    margin-top:1rem;
-    margin-bottom:1rem;
+.allmargin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-#type{
-    top:2.5rem;
+#type {
+    top: 2.5rem;
 }
 
-#mid{
-    left:3rem;
+#mid {
+    left: 3rem;
 }
 
-.pos{
-    margin-top:1rem;
+.pos {
+    margin-top: 1rem;
 }
 
 .margn {
@@ -89,8 +100,8 @@ a {
     padding-left: 0px;
 }
 
-.abmar{
-    margin-top:1rem;
+.abmar {
+    margin-top: 1rem;
 }
 
 .rad {
@@ -103,9 +114,9 @@ a {
     text-align: center;
 }
 
-.borders{
-    border-style:groove;
-    border-radius:1rem;
+.borders {
+    border-style: groove;
+    border-radius: 1rem;
 }
 
 .space {
@@ -122,14 +133,14 @@ a {
     padding-top: 5rem;
 }
 
-.side{
-    padding-left:9rem;
+.side {
+    padding-left: 9rem;
 }
 
 .posit {
     position: relative;
     left: 18rem;
-    width:65rem;
+    width: 65rem;
 }
 
 .btn-primary {
@@ -139,60 +150,60 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    font-size: 14px;
 }
 
-.space{
-    width:10rem;
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.space {
+    width: 10rem;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
 }
-
-
-

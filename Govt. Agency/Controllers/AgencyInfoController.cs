@@ -37,7 +37,7 @@ namespace Govt._Agency.Controllers
         //Authorize Validation
         [Authorize]
         // GET: AgencyInfo
-        public IActionResult Index(string searchBy, string search)
+        public IActionResult Index(string searchBy, string search, int PageNumber = 1)
         {
             var agency = _angencyInfoRepo.GetAllViews().ToList();
             if (search != null)
@@ -47,30 +47,30 @@ namespace Govt._Agency.Controllers
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Name.ToLower().Contains(srcname)).ToList();
-                    return View(agency);
                 }
                 //Search by phone
                 if (searchBy == "Phone")
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Phone.Contains(srcname)).ToList();
-                    return View(agency);
                 }
                 //Search by Email
                 if (searchBy == "Email")
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Email.ToLower().Contains(srcname)).ToList();
-                    return View(agency);
                 }
                 //Search by Address
                 if (searchBy == "Address")
                 {
                     string srcname = search.ToLower();
                     agency = agency.Where(x => x.Address.ToLower().Contains(srcname)).ToList();
-                    return View(agency);
                 }
             }
+            //Paging Logic
+            ViewBag.TotalPages = Math.Ceiling(agency.Count() / 3.0);
+            agency = agency.Skip((PageNumber - 1) * 3).Take(3).ToList();
+            ViewBag.PageNo = PageNumber;
             return View(agency);
         }
 
@@ -250,27 +250,47 @@ namespace Govt._Agency.Controllers
         }
 
         //Sort by Name Action Method
-        public IActionResult SortByName()
+        public IActionResult SortByName(int PageNumber = 1)
         {
-            return View("Index", _angencyInfoRepo.SortByName());
+            var agency = _angencyInfoRepo.SortByName().ToList();
+            //Paging Logic
+            ViewBag.TotalPages = Math.Ceiling(agency.Count() / 3.0);
+            agency = agency.Skip((PageNumber - 1) * 3).Take(3).ToList();
+            ViewBag.PageNo = PageNumber;
+            return View("Index",agency);
         }
 
         //Sort by Phone Action Method
-        public IActionResult SortByPhone()
+        public IActionResult SortByPhone(int PageNumber = 1)
         {
-            return View("Index", _angencyInfoRepo.SortByPhone());
+            var agency = _angencyInfoRepo.SortByPhone().ToList();
+            //Paging Logic
+            ViewBag.TotalPages = Math.Ceiling(agency.Count() / 3.0);
+            agency = agency.Skip((PageNumber - 1) * 3).Take(3).ToList();
+            ViewBag.PageNo = PageNumber;
+            return View("Index", agency);
         }
 
         //Sort by Email Action Method
-        public IActionResult SortByEmail()
+        public IActionResult SortByEmail(int PageNumber = 1)
         {
-            return View("Index", _angencyInfoRepo.SortByEmail());
+            var agency = _angencyInfoRepo.SortByEmail().ToList();
+            //Paging Logic
+            ViewBag.TotalPages = Math.Ceiling(agency.Count() / 3.0);
+            agency = agency.Skip((PageNumber - 1) * 3).Take(3).ToList();
+            ViewBag.PageNo = PageNumber;
+            return View("Index", agency);
         }
 
         //Sort by Date Action Method
-        public IActionResult SortByDate()
+        public IActionResult SortByDate(int PageNumber = 1)
         {
-            return View("Index", _angencyInfoRepo.SortByDate());
+            var agency = _angencyInfoRepo.SortByDate().ToList();
+            //Paging Logic
+            ViewBag.TotalPages = Math.Ceiling(agency.Count() / 3.0);
+            agency = agency.Skip((PageNumber - 1) * 3).Take(3).ToList();
+            ViewBag.PageNo = PageNumber;
+            return View("Index", agency);
         }
     }
 }
