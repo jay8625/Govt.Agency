@@ -119,41 +119,41 @@ namespace Govt._Agency.Controllers
             if (ModelState.IsValid)
             {
                 string UniqueFile = null;
-                if (model.GovtImage!=null)
+                if (model.GovtImage != null)
                 {
                     //Image upload Logic
-                    string upload= Path.Combine(hostingEnvironment.WebRootPath, "Images");
-                    UniqueFile=Guid.NewGuid().ToString() + "_" + model.GovtImage.FileName;
-                    string path=Path.Combine(upload, UniqueFile);
+                    string upload = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    UniqueFile = Guid.NewGuid().ToString() + "_" + model.GovtImage.FileName;
+                    string path = Path.Combine(upload, UniqueFile);
                     model.GovtImage.CopyTo(new FileStream(path, FileMode.Create));
                 }
                 var countries = _countryRepo.GetAll();
-                var states= _state.GetAll();
-                var cities= _city.GetAll();
+                var states = _state.GetAll();
+                var cities = _city.GetAll();
                 var agencyType = _agencyTypeRepo.GetAll();
                 //Assigning model from View model
                 AgencyInfo agencyInfo = new AgencyInfo
                 {
-                    Name=model.Name,
-                    Address=model.Address,
-                    City=cities.Where(x=>x.Id==Convert.ToInt32(model.City)).Select(s=>s.Name).FirstOrDefault(),
-                    PostalCode=model.PostalCode,
-                    Country= countries.Where(x=>x.Id== Convert.ToInt32(model.Country)).Select(s=>s.Name).FirstOrDefault(),
-                    State= states.Where(x=>x.Id== Convert.ToInt32(model.State)).Select(s=>s.Name).FirstOrDefault(),
-                    Email=model.Email,
-                    OfficePhone=model.OfficePhone,
-                    PhoneNumber=model.PhoneNumber,
-                    Type= agencyType.Where(x=>x.Id==Convert.ToInt32(model.Type)).Select(s=>s.Name).FirstOrDefault(),
-                    Description=model.Description,
-                    Broucher=model.Broucher,
-                    AidOrganization=model.AidOrganization,
-                    BroucherCopy=model.BroucherCopy,
-                    Comments=model.Comments,
-                    DateTime=model.DateTime,
-                    GovtImage=UniqueFile
+                    Name = model.Name,
+                    Address = model.Address,
+                    City = cities.Where(x => x.Id == Convert.ToInt32(model.City)).Select(s => s.Name).FirstOrDefault(),
+                    PostalCode = model.PostalCode,
+                    Country = countries.Where(x => x.Id == Convert.ToInt32(model.Country)).Select(s => s.Name).FirstOrDefault(),
+                    State = states.Where(x => x.Id == Convert.ToInt32(model.State)).Select(s => s.Name).FirstOrDefault(),
+                    Email = model.Email,
+                    OfficePhone = model.OfficePhone,
+                    PhoneNumber = model.PhoneNumber,
+                    Type = agencyType.Where(x => x.Id == Convert.ToInt32(model.Type)).Select(s => s.Name).FirstOrDefault(),
+                    Description = model.Description,
+                    Broucher = model.Broucher,
+                    AidOrganization = model.AidOrganization,
+                    BroucherCopy = model.BroucherCopy,
+                    Comments = model.Comments,
+                    DateTime = model.DateTime,
+                    GovtImage = UniqueFile
                 };
                 _angencyInfoRepo.Add(agencyInfo);
-                return RedirectToAction("Index","AgencyInfo");
+                return RedirectToAction("Index", "AgencyInfo");
             }
             return View();
         }
@@ -163,6 +163,11 @@ namespace Govt._Agency.Controllers
         // GET: AgencyInfo/Edit/5
         public IActionResult Edit(int id)
         {
+            //Data carried to View
+            ViewBag.Countries = new SelectList(_countryRepo.GetAll(), "Id", "Name");
+            ViewBag.AgencyTypes = new SelectList(_agencyTypeRepo.GetAll(), "Id", "Name");
+            ViewBag.States = new SelectList(_state.GetAll(), "Id", "Name");
+            ViewBag.Cities = new SelectList(_city.GetAll(), "Id", "Name");
             if (id == null)
             {
                 return NotFound();
@@ -247,7 +252,7 @@ namespace Govt._Agency.Controllers
         //Sort by Name Action Method
         public IActionResult SortByName()
         {
-            return View("Index",_angencyInfoRepo.SortByName());
+            return View("Index", _angencyInfoRepo.SortByName());
         }
 
         //Sort by Phone Action Method

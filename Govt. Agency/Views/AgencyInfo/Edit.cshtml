@@ -4,13 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit Agency Info</h1>
 
-<h4>AgencyInfo</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -19,9 +18,10 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+                <label class="control-label">City</label>
+                <select asp-for="City" class="col form-control form-group" asp-items="@ViewBag.Cities">
+                    <option>Select City</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -34,14 +34,18 @@
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
+                <label class="control-label">Country</label>
+                <select asp-for="Country" class="col form-control form-group" id="CountryList" asp-items="@ViewBag.Countries">
+                    <option>Select Country</option>
+                </select>
             </div>
+            </div>
+            <div class="col-md-4">
             <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
+                <label class="control-label">State</label>
+                <select asp-for="State" class="col form-control form-group" asp-items="@ViewBag.States">
+                    <option value="-1">Select State</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -63,17 +67,25 @@
                 <input asp-for="GovtImage" class="form-control" />
                 <span asp-validation-for="GovtImage" class="text-danger"></span>
             </div>
+            </div>
+            <div class="col-md-4">
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <label class="control-label">Agency Type</label>
+                <select asp-for="Type" id="type" class="form-control" asp-items="@ViewBag.AgencyTypes">
+                    <option>Select Type</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check ckbtn">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Broucher" /> @Html.DisplayNameFor(model => model.Broucher)
                 </label>
@@ -88,22 +100,17 @@
                     <input class="form-check-input" asp-for="BroucherCopy" /> @Html.DisplayNameFor(model => model.BroucherCopy)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="Comments" class="control-label"></label>
-                <input asp-for="Comments" class="form-control" />
-                <span asp-validation-for="Comments" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
+     <input type="submit" value="Save" class="btn btn-info" />
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

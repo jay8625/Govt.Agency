@@ -5,10 +5,9 @@
     var photopath = "~/Images/" + (Model.GovtImage ?? "noimage.jpg");
 }
 
-<h1>Details</h1>
+<h1>AgencyInfo Details</h1>
 
 <div>
-    <h4>AgencyInfo</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -112,6 +111,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
 </div>
