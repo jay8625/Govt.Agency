@@ -75,8 +75,12 @@ a {
     padding-left: 0px;
 }
 
-.rad{
-    border-radius:0.5rem;
+.abmar{
+    margin-top:1rem;
+}
+
+.rad {
+    border-radius: 0.5rem;
 }
 
 .list {

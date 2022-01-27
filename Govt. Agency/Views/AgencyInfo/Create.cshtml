@@ -8,21 +8,21 @@
 
 <form enctype="multipart/form-data" asp-action="Create">
     <div class="row">
-        <h4>PropertyInfo</h4>
+        <h4>Property Info</h4>
         <hr />
         <div class="col-md-12 row borders">
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Address" class="control-label"></label>
-                    <input asp-for="Address" class="form-control" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
-                </div>
-                <div class="form-group">
+                <div class="form-group allmargin">
                     <label class="control-label">Country</label>
                     <select asp-for="Country" class="col form-control form-group" id="CountryList" asp-items="@ViewBag.Countries">
                         <option>Select Country</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="OfficePhone" class="control-label"></label>
@@ -31,12 +31,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4">
-                <div class="form-group">
-                    <label asp-for="PhoneNumber" class="control-label"></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
+                <div class="form-group allmargin">
                     <label class="control-label">State</label>
                     <select asp-for="State" class="col form-control form-group" id="StateList">
                         <option value="-1">Select State</option>
@@ -47,18 +42,23 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
             </div>
             <div class="col-md-4 col-md-offset-8">
-                <div class="form-group">
-                    <label asp-for="PostalCode" class="control-label"></label>
-                    <input asp-for="PostalCode" class="form-control" />
-                    <span asp-validation-for="PostalCode" class="text-danger"></span>
-                </div>
-                <div class="form-group">
+                <div class="form-group allmargin">
                     <label class="control-label">City</label>
                     <select asp-for="City" class="col form-control form-group" id="CityList">
                         <option>Select City</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostalCode" class="control-label"></label>
+                    <input asp-for="PostalCode" class="form-control" />
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="GovtImage" class="control-label"></label>
@@ -76,12 +76,12 @@
         <div class="col-md-12 row borders">
             <div class="row col-md-8">
                 <div class="form-group col-md-6">
-                    <label class="control-label">Agency Type</label>
+                    <label class="control-label abmar">Agency Type</label>
                     <select asp-for="Type" id="type" class="form-control" asp-items="@ViewBag.AgencyTypes">
                         <option>Select Type</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group allmargin col-md-6">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
@@ -91,33 +91,33 @@
                     <textarea asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-                <div class="form-group form-check col-md-4">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Broucher" /> @Html.DisplayNameFor(model => model.Broucher)
-                    </label>
-                </div>
-                <div class="form-group form-check col-md-4">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="AidOrganization" /> @Html.DisplayNameFor(model => model.AidOrganization)
-                    </label>
-                </div>
-                <div class="form-group form-check col-md-4">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="BroucherCopy" /> @Html.DisplayNameFor(model => model.BroucherCopy)
-                    </label>
-                </div>
             </div>
             <div class="col-md-4 col-md-offset-8">
-                <div class="form-group">
+                <div class="form-group allmargin">
                     <label asp-for="Comments" class="control-label"></label>
                     <input asp-for="Comments" class="form-control" />
                     <span asp-validation-for="Comments" class="text-danger"></span>
                 </div>
-                <div class="form-group btns">
-                    <a class="btn btn-info col-md-5" asp-controller="Home" asp-action="Index">Cancel</a>
-                    <input id="mid" type="submit" value="Create" class="col-md-5 col-md-offset-6 btn btn-info" />
-                </div>
             </div>
+            <div class="form-group form-check col-md-4">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Broucher" /> @Html.DisplayNameFor(model => model.Broucher)
+                </label>
+            </div>
+            <div class="form-group form-check col-md-4">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AidOrganization" /> @Html.DisplayNameFor(model => model.AidOrganization)
+                </label>
+            </div>
+            <div class="form-group form-check col-md-4">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BroucherCopy" /> @Html.DisplayNameFor(model => model.BroucherCopy)
+                </label>
+            </div>
+        </div>
+        <div class="form-group offset-7">
+            <a class="btn btn-info space" asp-controller="Home" asp-action="Index">Cancel</a>
+            <input id="mid" type="submit" value="Create" class="space col-md-offset-6 btn btn-info" />
         </div>
     </div>
 </form>

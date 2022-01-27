@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Govt.Agency.DAL.Migrations
 {
     [DbContext(typeof(Govt_AgencyContext))]
-    [Migration("20220126171736_Common")]
+    [Migration("20220127094934_Common")]
     partial class Common
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
