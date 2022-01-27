@@ -34,8 +34,8 @@ namespace Govt._Agency.Controllers
             _city = city;
         }
 
-        //Accessable to Admin
-        [Authorize(Roles = "Admin")]
+        //Authorize Validation
+        [Authorize]
         // GET: AgencyInfo
         public IActionResult Index(string searchBy, string search)
         {
@@ -81,6 +81,8 @@ namespace Govt._Agency.Controllers
             return PartialView();
         }
 
+        //Accessable to Admin
+        [Authorize(Roles = "Admin")]
         // GET: AgencyInfo/Details/5
         public IActionResult Details(int id)
         {
@@ -151,11 +153,13 @@ namespace Govt._Agency.Controllers
                     GovtImage=UniqueFile
                 };
                 _angencyInfoRepo.Add(agencyInfo);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","AgencyInfo");
             }
             return View();
         }
 
+        //Accessable to Admin
+        [Authorize(Roles = "Admin")]
         // GET: AgencyInfo/Edit/5
         public IActionResult Edit(int id)
         {
@@ -206,6 +210,8 @@ namespace Govt._Agency.Controllers
             return View(agencyInfo);
         }
 
+        //Accessable to Admin
+        [Authorize(Roles = "Admin")]
         // GET: AgencyInfo/Delete/5
         public IActionResult Delete(int id)
         {
